@@ -4,610 +4,318 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PARK-O-BUDDY — Plan. Pay. Park.</title>
-  <meta name="description" content="PARK-O-BUDDY is a modern parking marketplace connecting Parkers and Hosts. Tagline: PLAN. PAY. PARK.">
-  
-  <!-- Separate External Stylesheet -->
+  <meta name="description" content="Find & Book Parking in Seconds with ease. Smart. Simple. Seamless.">
   <link rel="stylesheet" href="style.css">
-  
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
 </head>
 <body>
 
-  <!-- =========================================================================
-       NAVIGATION HEADER
-       ========================================================================= -->
+  <!-- ==========================================
+       DARK NAVBAR (EXACT FIGMA SPEC)
+       ========================================== -->
   <header class="navbar">
-    <div class="container navbar-container">
-      <div class="logo" onclick="navigateTo('home')">
-        <div class="logo-icon">🅿️</div>
-        <span>PARK-O-<span class="buddy">BUDDY</span></span>
-      </div>
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
 
-      <ul class="nav-menu" id="navMenu">
-        <li><a class="nav-link active" data-view="home" onclick="navigateTo('home')">Home</a></li>
-        <li><a class="nav-link" data-view="search" onclick="navigateTo('search')">Find Parking</a></li>
-        <li><a class="nav-link" data-view="host" onclick="navigateTo('host')">Rent Parking</a></li>
-        <li><a class="nav-link" data-view="about" onclick="navigateTo('about')">About</a></li>
-        <li><a class="nav-link" data-view="dashboard" onclick="navigateTo('dashboard')">Dashboard</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item active">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Us</a></li>
+        <li><a href="auth.html" class="nav-item">Sign Up</a></li>
+        <li><a href="search.html" class="nav-item">Find Parking</a></li>
       </ul>
 
       <div class="nav-actions">
-        <button class="btn btn-outline btn-sm" onclick="navigateTo('auth', {mode: 'login'})">Log In</button>
-        <button class="btn btn-primary btn-sm" onclick="navigateTo('auth', {mode: 'signup'})">Get Started</button>
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
       </div>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
     </div>
   </header>
 
-  <!-- =========================================================================
-       MAIN CONTENT CONTAINER (PAGES / VIEWS)
-       ========================================================================= -->
+  <!-- ==========================================
+       HERO SECTION (EXACT FIGMA DESIGN)
+       ========================================== -->
   <main>
+    <section class="hero-section">
+      <div class="container">
+        <!-- Main Headline -->
+        <h1 class="hero-heading">
+          Find & Book Parking in <span class="text-green">Seconds</span><br>
+          with <span class="text-green">ease</span>
+        </h1>
+        <p class="hero-subtitle">
+          PARK-O-BUDDY connects drivers with available parking spots nearby.<br>
+          Smart. Simple. Seamless.
+        </p>
 
-    <!-- 1. HOME PAGE -->
-    <section id="view-home" class="page-view active">
-      <div class="container hero">
-        <div class="hero-grid">
-          <div class="hero-left">
-            <div class="eyebrow">SMART PARKING, MADE SIMPLE</div>
-            <h1 class="hero-title">Find a spot.<br>Park with <span class="text-green">ease.</span></h1>
-            <p class="hero-subtitle">Find nearby parking spaces or earn from your vacant spot — all in one simple platform.</p>
+        <!-- Horizontal Pill Search Bar -->
+        <form action="results.html" method="GET" class="search-pill-container">
+          <!-- Field 1: Location -->
+          <div class="search-field">
+            <span class="search-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Location
+            </span>
+            <input type="text" name="location" class="search-input" placeholder="Where are you going?" value="Downtown Hub" required>
+          </div>
+
+          <div class="search-divider"></div>
+
+          <!-- Field 2: Date -->
+          <div class="search-field">
+            <span class="search-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              Date
+            </span>
+            <input type="date" name="date" class="search-input" value="2026-11-10">
+          </div>
+
+          <!-- Search Button -->
+          <button type="submit" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Search Parking
+          </button>
+        </form>
+
+        <!-- Trust Stats Bar -->
+        <div class="stats-bar">
+          <div class="stat-item">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-label">Happy Users</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5,000+</div>
+            <div class="stat-label">Verified Spots</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Cities Covered</div>
+          </div>
+        </div>
+
+        <!-- Stylized Map Banner with Parking Pins -->
+        <div class="hero-map-banner">
+          <svg class="hero-map-svg" viewBox="0 0 1000 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Landmass base -->
+            <rect width="1000" height="340" fill="#E8F1E7"/>
+            <!-- River / Water -->
+            <path d="M0 160 C 200 190, 350 140, 500 200 C 650 260, 800 220, 1000 280 L 1000 340 L 0 340 Z" fill="#CFE2E8"/>
+            <path d="M220 0 C 250 80, 270 120, 310 170" stroke="#CFE2E8" stroke-width="24" stroke-linecap="round"/>
             
-            <div class="hero-cta">
-              <button class="btn btn-primary btn-lg" onclick="navigateTo('search')">Find Parking</button>
-              <button class="btn btn-secondary btn-lg" onclick="navigateTo('host')">Rent My Space</button>
-            </div>
+            <!-- Road Network -->
+            <g stroke="#FFFFFF" stroke-width="6" stroke-linecap="round">
+              <line x1="50" y1="40" x2="950" y2="40"/>
+              <line x1="30" y1="100" x2="970" y2="100"/>
+              <line x1="40" y1="180" x2="960" y2="180"/>
+              <line x1="20" y1="260" x2="980" y2="260"/>
+              
+              <line x1="120" y1="10" x2="120" y2="330"/>
+              <line x1="260" y1="10" x2="260" y2="330"/>
+              <line x1="420" y1="10" x2="420" y2="330"/>
+              <line x1="580" y1="10" x2="580" y2="330"/>
+              <line x1="740" y1="10" x2="740" y2="330"/>
+              <line x1="880" y1="10" x2="880" y2="330"/>
 
-            <div class="trust-indicators">
-              <div class="trust-item">✓ Easy booking</div>
-              <div class="trust-item">✓ Verified spaces</div>
-              <div class="trust-item">✓ Transparent pricing</div>
-            </div>
-          </div>
+              <!-- Diagonal Highways -->
+              <line x1="80" y1="20" x2="520" y2="320" stroke-width="8"/>
+              <line x1="550" y1="20" x2="920" y2="310" stroke-width="8"/>
+            </g>
 
-          <div class="hero-right">
-            <div class="hero-mockup-card">
-              <div class="mockup-header">
-                <strong>Live Spot Map — Cyber Hub</strong>
-                <span class="badge badge-green">4 Spots Open</span>
-              </div>
-              <div class="mockup-map">
-                <div class="map-road road-h"></div>
-                <div class="map-road road-v"></div>
-                <div class="map-pin pin-1">₹30/hr</div>
-                <div class="map-pin pin-2 active">₹40/hr</div>
-                <div class="map-pin pin-3">₹50/hr</div>
-              </div>
-              <div class="floating-spot-card">
-                <div>
-                  <div class="spot-tag">Parking available nearby</div>
-                  <div class="spot-title">Green View Parking</div>
-                  <div class="spot-meta">📍 0.3 km away · Covered · CCTV</div>
-                </div>
-                <div class="spot-price-box">
-                  <div class="spot-price">₹40<span class="per-hr">/hr</span></div>
-                  <button class="btn btn-primary btn-sm" onclick="navigateTo('results')">Book Now</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            <!-- Scattered Green Parking Pins -->
+            <g id="mapPins">
+              <!-- Pin 1 -->
+              <circle cx="210" cy="80" r="14" fill="#10B981"/>
+              <text x="210" y="85" font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">P</text>
+              
+              <!-- Pin 2 -->
+              <circle cx="390" cy="60" r="14" fill="#10B981"/>
+              <text x="390" y="65" font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">P</text>
 
-        <!-- Prominent Hero Search Card -->
-        <div class="search-card">
-          <h3 class="search-card-title">📍 Where do you want to park?</h3>
-          <form onsubmit="event.preventDefault(); navigateTo('results');">
-            <div class="search-grid">
-              <div class="form-group">
-                <label class="form-label">Location</label>
-                <input type="text" class="form-input" placeholder="Enter city, area, landmark" value="Cyber City, Tech Park">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Date</label>
-                <input type="date" class="form-input" value="2026-09-10">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Check-in</label>
-                <input type="time" class="form-input" value="09:00">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Check-out</label>
-                <input type="time" class="form-input" value="13:00">
-              </div>
-              <div class="form-group search-btn-wrap">
-                <button type="submit" class="btn btn-primary btn-full">Search Parking &rarr;</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+              <!-- Pin 3 (Active) -->
+              <circle cx="490" cy="130" r="18" fill="#10B981" stroke="#FFFFFF" stroke-width="3"/>
+              <text x="490" y="136" font-family="Arial" font-size="13" font-weight="bold" fill="#FFFFFF" text-anchor="middle">P</text>
 
-      <!-- How It Works Section -->
-      <section class="section section-white">
-        <div class="container">
-          <div class="section-title-wrap">
-            <h2>HOW IT WORKS</h2>
-            <p class="text-muted">Reserve guaranteed parking in 3 easy steps.</p>
-          </div>
-          <div class="how-grid">
-            <div class="how-card">
-              <div class="step-num">01</div>
-              <h3>Find</h3>
-              <p>Search for available private or commercial parking spots near your destination with real-time rates.</p>
-            </div>
-            <div class="how-card">
-              <div class="step-num">02</div>
-              <h3>Book</h3>
-              <p>Choose your preferred parking slot from our interactive grid and pay securely online.</p>
-            </div>
-            <div class="how-card">
-              <div class="step-num">03</div>
-              <h3>Park</h3>
-              <p>Arrive at the location, scan your digital QR pass, park hassle-free, and enjoy your day.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </section>
+              <!-- Pin 4 -->
+              <circle cx="680" cy="90" r="14" fill="#10B981"/>
+              <text x="680" y="95" font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">P</text>
 
-    <!-- 2. ABOUT PAGE -->
-    <section id="view-about" class="page-view">
-      <div class="container about-hero">
-        <div class="eyebrow">OUR MISSION</div>
-        <h1 class="hero-title">Parking should be simple.</h1>
-        <p class="hero-subtitle">PARK-O-BUDDY connects drivers with people who have unused parking spaces nearby.</p>
+              <!-- Pin 5 -->
+              <circle cx="820" cy="140" r="14" fill="#10B981"/>
+              <text x="820" y="145" font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">P</text>
 
-        <div class="problem-solution-grid">
-          <!-- Problem -->
-          <div class="problem-card">
-            <h3 class="title-problem">❌ The Problem</h3>
-            <p>“Drivers waste valuable time searching for parking while thousands of private parking spaces remain unused.”</p>
-            <div class="problem-list">
-              <div class="problem-item">😫 Frustrated drivers searching for 20+ mins</div>
-              <div class="problem-item">🚘 Crowded roads and heavy traffic congestion</div>
-              <div class="problem-item">⏱️ Wasted time, fuel, and energy</div>
-            </div>
-          </div>
+              <!-- Pin 6 -->
+              <circle cx="310" cy="220" r="14" fill="#10B981"/>
+              <text x="310" y="225" font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">P</text>
 
-          <!-- Solution -->
-          <div class="solution-card">
-            <h3 class="title-solution">✅ Our Solution</h3>
-            <p>“PARK-O-BUDDY connects drivers with people who have unused parking spaces nearby.”</p>
-            <div class="solution-diagram">
-              <div class="node">🚗<br>Parker</div>
-              <div class="arrow">&harr;</div>
-              <div class="node node-main">🅿️<br>PARK-O-BUDDY</div>
-              <div class="arrow">&harr;</div>
-              <div class="node">🏠<br>Host</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 Feature Cards -->
-        <h2 style="margin-top: 50px;">Key Features</h2>
-        <div class="features-grid">
-          <div class="feature-card">📍 <h4>Nearby Parking</h4><p>Find available parking within walking distance of your destination.</p></div>
-          <div class="feature-card">💳 <h4>Secure Payments</h4><p>100% cashless, transparent pricing with zero hidden surcharges.</p></div>
-          <div class="feature-card">⭐ <h4>Trusted Hosts</h4><p>All private spots and hosts are identity-verified for safety.</p></div>
-          <div class="feature-card">🕒 <h4>Flexible Timings</h4><p>Book by the hour or day with easy instant extensions.</p></div>
-          <div class="feature-card">💰 <h4>Fair Pricing</h4><p>Save up to 40% compared to traditional expensive commercial garages.</p></div>
-          <div class="feature-card">📱 <h4>Easy Booking</h4><p>Reserve your slot in 3 simple clicks with instant entry QR passes.</p></div>
+              <!-- Pin 7 -->
+              <circle cx="610" cy="240" r="14" fill="#10B981"/>
+              <text x="610" y="245" font-family="Arial" font-size="11" font-weight="bold" fill="#FFFFFF" text-anchor="middle">P</text>
+            </g>
+          </svg>
         </div>
       </div>
     </section>
 
-    <!-- 3. SIGN UP PAGE -->
-    <section id="view-auth" class="page-view">
-      <div class="container auth-wrapper">
-        <div class="auth-card">
-          <div class="text-center">
-            <h2>Welcome to PARK-O-BUDDY</h2>
-            <p class="text-muted">How would you like to use PARK-O-BUDDY?</p>
+    <!-- ==========================================
+         HOW IT WORKS (EXACT FIGMA 3 CARDS)
+         ========================================== -->
+    <section class="section" style="background: #FFFFFF; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">How It Works</h2>
+          <p class="section-desc">PARK-O-BUDDY makes parking painless with three simple steps.</p>
+        </div>
+
+        <div class="how-it-works-grid">
+          <!-- Step 1 -->
+          <div class="how-card">
+            <div class="step-badge">1</div>
+            <h3 class="how-title">Search a Spot</h3>
+            <p class="how-text">Enter your destination, select your date/time, and browse available public or private spaces.</p>
           </div>
 
-          <!-- Parker vs Host Toggle Cards -->
-          <div class="role-selector">
-            <div class="role-card selected" id="roleParker" onclick="selectAuthRole('parker')">
-              <span class="checkmark">✓</span>
-              <div class="role-icon">🚗</div>
-              <h4>PARKER</h4>
-              <p class="text-muted">“I need a parking space.”</p>
-            </div>
-
-            <div class="role-card" id="roleHost" onclick="selectAuthRole('host')">
-              <span class="checkmark">✓</span>
-              <div class="role-icon">🏠</div>
-              <h4>HOST</h4>
-              <p class="text-muted">“I want to rent my space.”</p>
-            </div>
+          <!-- Step 2 -->
+          <div class="how-card">
+            <div class="step-badge">2</div>
+            <h3 class="how-title">Reserve & Pay</h3>
+            <p class="how-text">Instantly secure your parking spot with our transparent pricing and safe digital payment portal.</p>
           </div>
 
-          <form onsubmit="handleAuthSubmit(event)">
-            <div class="form-group">
-              <label class="form-label">Full Name</label>
-              <input type="text" id="authName" class="form-input" placeholder="Alex Morgan" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email Address</label>
-              <input type="email" class="form-input" placeholder="alex@example.com" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Phone Number</label>
-              <input type="tel" class="form-input" placeholder="+91 98765 43210" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-input" placeholder="••••••••" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top: 10px;">
-              Create Account &rarr;
-            </button>
-          </form>
-
-          <div class="text-center" style="margin-top: 20px;">
-            <span class="text-muted">Already have an account?</span> 
-            <a href="#" class="text-green font-bold" onclick="showToast('Logged in!'); navigateTo('dashboard'); return false;">Log in</a>
+          <!-- Step 3 -->
+          <div class="how-card">
+            <div class="step-badge">3</div>
+            <h3 class="how-title">Park with Ease</h3>
+            <p class="how-text">Navigate straight to your reserved spot with guaranteed entry and zero stress.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. PARKER SEARCH PAGE -->
-    <section id="view-search" class="page-view">
-      <div class="container" style="padding: 40px 24px;">
-        <div class="text-center" style="max-width: 600px; margin: 0 auto 30px;">
-          <h1 class="hero-title">Find your perfect parking spot</h1>
-          <p class="text-muted">Select your destination and vehicle type to discover verified spaces.</p>
+    <!-- ==========================================
+         FEATURED PARKING SPOTS (EXACT FIGMA CARDS)
+         ========================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Parking Spots</h2>
+          <p class="section-desc">Reserve premium verified spots at unbeatable rates.</p>
         </div>
 
-        <div class="card" style="max-width: 800px; margin: 0 auto 40px; padding: 30px;">
-          <form onsubmit="event.preventDefault(); navigateTo('results');">
-            <div class="form-group">
-              <label class="form-label">📍 Destination Location</label>
-              <input type="text" class="form-input" value="Cyber City, Tech Park Phase 2">
+        <div class="featured-grid">
+          <!-- Card 1 -->
+          <div class="spot-card">
+            <div class="spot-img-wrap">
+              <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=700&q=80" alt="Copley Square Plaza" class="spot-img">
             </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label">📅 Date</label>
-                <input type="date" class="form-input" value="2026-09-10">
+            <div class="spot-body">
+              <div class="spot-header-row">
+                <h4 class="spot-name">Copley Square Plaza</h4>
+                <div class="spot-rating">⭐ 4.9</div>
               </div>
-              <div class="form-group">
-                <label class="form-label">🕘 Check-in</label>
-                <input type="time" class="form-input" value="09:00">
-              </div>
-              <div class="form-group">
-                <label class="form-label">🕘 Check-out</label>
-                <input type="time" class="form-input" value="13:00">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">🚗 Vehicle Type</label>
-              <select class="form-select">
-                <option value="sedan" selected>Sedan / Compact SUV</option>
-                <option value="hatchback">Hatchback</option>
-                <option value="suv">Full-size SUV</option>
-                <option value="ev">Electric Vehicle (EV)</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg btn-full" style="margin-top: 10px;">Find Parking</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. PARKING RESULTS PAGE -->
-    <section id="view-results" class="page-view">
-      <div class="container" style="padding-top: 30px;">
-        <h2>Parking spaces near you</h2>
-        <p class="text-muted">Showing available spaces in <strong>Cyber City, Tech Park</strong></p>
-
-        <div class="filters-bar">
-          <button class="filter-chip active">All Spots</button>
-          <button class="filter-chip" onclick="toggleFilterChip(this)">Price: Low to High</button>
-          <button class="filter-chip" onclick="toggleFilterChip(this)">Distance &lt; 0.5 km</button>
-          <button class="filter-chip" onclick="toggleFilterChip(this)">Covered Parking</button>
-          <button class="filter-chip" onclick="toggleFilterChip(this)">⚡ EV Charging</button>
-          <button class="filter-chip" onclick="toggleFilterChip(this)">⭐ Rating 4.5+</button>
-        </div>
-
-        <div class="results-layout">
-          <!-- Left Listings -->
-          <div class="listings-grid" id="listingsContainer">
-            <div class="parking-card" id="card-spot-1" onmouseenter="highlightMapPin(1)" onmouseleave="unhighlightMapPin(1)">
-              <div class="card-icon">🅿️</div>
-              <div class="card-content">
-                <div class="card-header-row">
-                  <h4>Green View Parking</h4>
-                  <span class="rating">⭐ 4.8</span>
-                </div>
-                <div class="text-muted">📍 0.3 km away · Cyber City Block A</div>
-                <div class="tags"><span class="badge badge-green">Covered</span> <span class="badge badge-grey">CCTV</span></div>
-                <div class="card-footer-row">
-                  <div class="price">₹40<span>/hr</span></div>
-                  <button class="btn btn-primary btn-sm" onclick="selectSpaceAndChooseSlot('Green View Parking', 40, '0.3 km away · Cyber City Block A')">View Space</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="parking-card" id="card-spot-2" onmouseenter="highlightMapPin(2)" onmouseleave="unhighlightMapPin(2)">
-              <div class="card-icon">🏬</div>
-              <div class="card-content">
-                <div class="card-header-row">
-                  <h4>Metro Mall Basement Spot</h4>
-                  <span class="rating">⭐ 4.6</span>
-                </div>
-                <div class="text-muted">📍 0.5 km away · Metro Mall Gate 3</div>
-                <div class="tags"><span class="badge badge-green">Covered</span> <span class="badge badge-coral">⚡ EV Charging</span></div>
-                <div class="card-footer-row">
-                  <div class="price">₹30<span>/hr</span></div>
-                  <button class="btn btn-primary btn-sm" onclick="selectSpaceAndChooseSlot('Metro Mall Basement Spot', 30, '0.5 km away · Metro Mall Gate 3')">View Space</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="parking-card" id="card-spot-3" onmouseenter="highlightMapPin(3)" onmouseleave="unhighlightMapPin(3)">
-              <div class="card-icon">🏢</div>
-              <div class="card-content">
-                <div class="card-header-row">
-                  <h4>Tech Park Executive Garage</h4>
-                  <span class="rating">⭐ 4.9</span>
-                </div>
-                <div class="text-muted">📍 0.1 km away · Tech Park Plaza</div>
-                <div class="tags"><span class="badge badge-green">Underground</span> <span class="badge badge-grey">CCTV</span></div>
-                <div class="card-footer-row">
-                  <div class="price">₹50<span>/hr</span></div>
-                  <button class="btn btn-primary btn-sm" onclick="selectSpaceAndChooseSlot('Tech Park Executive Garage', 50, '0.1 km away · Tech Park Plaza')">View Space</button>
-                </div>
-              </div>
+              <div class="spot-price-tag">₹30<span>/hr</span></div>
+              <a href="slot.html" class="btn btn-primary btn-full">Book Now</a>
             </div>
           </div>
 
-          <!-- Right Map Graphic -->
-          <div class="map-wrapper">
-            <div class="map-box">
-              <div class="map-grid-bg"></div>
-              <div class="map-price-pin active" id="pin-1" style="top: 35%; left: 45%;" onclick="scrollToListingCard(1)">🅿️ ₹40</div>
-              <div class="map-price-pin" id="pin-2" style="top: 25%; left: 70%;" onclick="scrollToListingCard(2)">🏬 ₹30</div>
-              <div class="map-price-pin" id="pin-3" style="top: 70%; left: 35%;" onclick="scrollToListingCard(3)">🏢 ₹50</div>
+          <!-- Card 2 -->
+          <div class="spot-card">
+            <div class="spot-img-wrap">
+              <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=700&q=80" alt="Downtown Hub Garage" class="spot-img">
+            </div>
+            <div class="spot-body">
+              <div class="spot-header-row">
+                <h4 class="spot-name">Downtown Hub Garage</h4>
+                <div class="spot-rating">⭐ 4.8</div>
+              </div>
+              <div class="spot-price-tag">₹40<span>/hr</span></div>
+              <a href="slot.html" class="btn btn-primary btn-full">Book Now</a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="spot-card">
+            <div class="spot-img-wrap">
+              <img src="https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?auto=format&fit=crop&w=700&q=80" alt="Airport Zone Secure Space" class="spot-img">
+            </div>
+            <div class="spot-body">
+              <div class="spot-header-row">
+                <h4 class="spot-name">Airport Zone Secure...</h4>
+                <div class="spot-rating">⭐ 4.7</div>
+              </div>
+              <div class="spot-price-tag">₹50<span>/hr</span></div>
+              <a href="slot.html" class="btn btn-primary btn-full">Book Now</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- 6. CHOOSE SLOT PAGE -->
-    <section id="view-slot" class="page-view">
-      <div class="container" style="padding-top: 30px;">
-        <button class="btn btn-outline btn-sm" onclick="navigateTo('results')" style="margin-bottom: 12px;">&larr; Back to Results</button>
-        <h1>Choose your parking slot</h1>
-
-        <div class="card" style="margin: 16px 0; padding: 16px;">
-          <h3 id="slotSpaceTitle">Green View Parking</h3>
-          <p id="slotSpaceMeta" class="text-muted">⭐ 4.8 · Covered · CCTV · 0.3 km away</p>
-        </div>
-
-        <div class="slot-layout">
-          <!-- Parking Grid -->
-          <div class="card slot-card">
-            <h3>Select Parking Spot</h3>
-            <div class="slot-legend">
-              <span>🟢 Available</span>
-              <span>⚪ Occupied</span>
-              <span>🟠 Selected</span>
-            </div>
-
-            <div class="matrix-container">
-              <div class="matrix-row">
-                <button class="slot-btn" onclick="selectSlot('A1')">A1</button>
-                <button class="slot-btn occupied" disabled>A2</button>
-                <button class="slot-btn" onclick="selectSlot('A3')">A3</button>
-                <button class="slot-btn" onclick="selectSlot('A4')">A4</button>
-                <button class="slot-btn occupied" disabled>A5</button>
-              </div>
-              <div class="matrix-row">
-                <button class="slot-btn" onclick="selectSlot('B1')">B1</button>
-                <button class="slot-btn selected" id="slot-B2" onclick="selectSlot('B2')">B2</button>
-                <button class="slot-btn" onclick="selectSlot('B3')">B3</button>
-                <button class="slot-btn occupied" disabled>B4</button>
-                <button class="slot-btn" onclick="selectSlot('B5')">B5</button>
-              </div>
-              <div class="matrix-row">
-                <button class="slot-btn" onclick="selectSlot('C1')">C1</button>
-                <button class="slot-btn" onclick="selectSlot('C2')">C2</button>
-                <button class="slot-btn occupied" disabled>C3</button>
-                <button class="slot-btn" onclick="selectSlot('C4')">C4</button>
-                <button class="slot-btn" onclick="selectSlot('C5')">C5</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Summary Sidebar -->
-          <div class="card summary-card">
-            <h3>Booking Summary</h3>
-            <div class="summary-line"><span>Facility:</span> <strong id="summaryFacilityName">Green View Parking</strong></div>
-            <div class="summary-line"><span>Selected Slot:</span> <strong id="summarySelectedSlot" class="text-coral">B2</strong></div>
-            <div class="summary-line"><span>Date:</span> <strong>10 September 2026</strong></div>
-            <div class="summary-line"><span>Time:</span> <strong>09:00 AM – 01:00 PM</strong></div>
-            <div class="summary-line"><span>Duration:</span> <strong>4 hours</strong></div>
-            <div class="summary-line summary-total">
-              <span>Total:</span> <span id="summaryTotalAmount" class="text-green">₹160</span>
-            </div>
-
-            <button class="btn btn-primary btn-lg btn-full" style="margin-top: 20px;" onclick="confirmBooking()">Continue &rarr;</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. HOST PAGE -->
-    <section id="view-host" class="page-view">
-      <div class="container" style="padding-top: 40px;">
-        <div class="text-center" style="max-width: 600px; margin: 0 auto 30px;">
-          <h1 class="hero-title">Turn your empty space into income.</h1>
-          <p class="text-muted">List your space and start earning when you're not using it.</p>
-        </div>
-
-        <div class="host-layout">
-          <!-- Form -->
-          <div class="card" style="padding: 24px;">
-            <h3>List Your Parking Space</h3>
-            <form onsubmit="handleHostPublish(event)">
-              <div class="form-group">
-                <label class="form-label">Parking Space Name</label>
-                <input type="text" id="hostTitle" class="form-input" value="Sunny Private Driveway" oninput="updateHostPreview()">
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Address & Area</label>
-                <input type="text" id="hostAddress" class="form-input" value="Plot 42, Sector 15, Near Metro" oninput="updateHostPreview()">
-              </div>
-
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Parking Type</label>
-                  <select id="hostType" class="form-select" onchange="updateHostPreview()">
-                    <option value="Covered Driveway">Covered Driveway</option>
-                    <option value="Open Spot">Open Spot</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Price / Hour (₹)</label>
-                  <input type="number" id="hostPrice" class="form-input" value="45" oninput="updateHostPreview()">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label">Photo Upload</label>
-                <div class="photo-box" onclick="showToast('Photo attached!')">+ Add photos</div>
-              </div>
-
-              <button type="submit" class="btn btn-secondary btn-lg btn-full" style="margin-top: 16px;">Publish Parking Space</button>
-            </form>
-          </div>
-
-          <!-- Live Preview Card -->
-          <div>
-            <h4 class="text-muted" style="margin-bottom: 10px;">LIVE LISTING PREVIEW</h4>
-            <div class="parking-card" style="border-color: var(--primary-green);">
-              <div class="card-icon">🏡</div>
-              <div class="card-content">
-                <div class="card-header-row">
-                  <h4 id="previewTitle">Sunny Private Driveway</h4>
-                  <span class="badge badge-green">NEW</span>
-                </div>
-                <div class="text-muted" id="previewAddress">📍 Plot 42, Sector 15, Near Metro</div>
-                <div class="card-footer-row" style="margin-top: 15px;">
-                  <div class="price" id="previewPrice">₹45<span>/hr</span></div>
-                  <span class="badge badge-green">Ready</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. BOOKING CONFIRMATION PAGE -->
-    <section id="view-confirmation" class="page-view">
-      <div class="container text-center" style="padding: 50px 0;">
-        <div class="success-badge">✓</div>
-        <h1>You're all set!</h1>
-        <p class="text-muted">Your parking space has been successfully reserved.</p>
-
-        <div class="ticket-card card" style="max-width: 500px; margin: 30px auto; text-align: left;">
-          <div class="ticket-header">
-            <strong class="text-green">PARK-O-PASS</strong>
-            <span class="badge badge-green">ID: <span id="ticketBookingId">POB-48291</span></span>
-          </div>
-
-          <div class="ticket-body">
-            <div><span class="text-muted">Facility:</span> <strong id="ticketSpaceName">Green View Parking</strong></div>
-            <div><span class="text-muted">Slot:</span> <strong id="ticketSlot" class="text-coral">B2</strong></div>
-            <div><span class="text-muted">Date:</span> <strong id="ticketDate">10 September 2026</strong></div>
-            <div><span class="text-muted">Time:</span> <strong>09:00 AM – 01:00 PM</strong></div>
-            <div><span class="text-muted">Paid:</span> <strong id="ticketAmount" class="text-green">₹160</strong></div>
-          </div>
-        </div>
-
-        <button class="btn btn-primary" onclick="navigateTo('dashboard')">Back to Dashboard &rarr;</button>
-      </div>
-    </section>
-
-    <!-- 9. DASHBOARD PAGE -->
-    <section id="view-dashboard" class="page-view">
-      <div class="container dashboard-layout" style="padding-top: 30px;">
-        <!-- Sidebar -->
-        <aside class="sidebar card">
-          <h4>PARK-O-BUDDY</h4>
-          <ul class="sidebar-menu">
-            <li><button class="active" onclick="switchDashTab('overview', this)">📊 Overview</button></li>
-            <li><button onclick="switchDashTab('bookings', this)">🚗 My Bookings</button></li>
-            <li><button onclick="navigateTo('search')">🔍 Find Parking</button></li>
-            <li><button onclick="switchDashTab('spaces', this)">🏠 My Spaces</button></li>
-            <li><button onclick="switchDashTab('earnings', this)">💰 Earnings</button></li>
-          </ul>
-        </aside>
-
-        <!-- Main Dash -->
-        <div>
-          <h2>Good morning! 👋</h2>
-          <p class="text-muted">Here is your parking summary.</p>
-
-          <div class="stats-grid">
-            <div class="stat-card card"><span>Upcoming Bookings</span> <h3>2</h3></div>
-            <div class="stat-card card"><span>Completed Bookings</span> <h3>8</h3></div>
-            <div class="stat-card card"><span>Total Spent</span> <h3 class="text-green">₹1,420</h3></div>
-            <div class="stat-card card"><span>Host Earnings</span> <h3 class="text-coral">₹8,600</h3></div>
-          </div>
-
-          <div class="card" style="margin-top: 24px;">
-            <h3>Upcoming Bookings</h3>
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Facility</th>
-                  <th>Date</th>
-                  <th>Time</th>
-                  <th>Slot</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="dashBookingsTable">
-                <tr>
-                  <td>Green View Parking</td>
-                  <td>10 Sep 2026</td>
-                  <td>09:00 AM – 01:00 PM</td>
-                  <td><span class="badge badge-coral">B2</span></td>
-                  <td><span class="badge badge-green">Confirmed</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
   </main>
 
-  <!-- Toast Message -->
-  <div id="toast" class="toast"></div>
+  <!-- ==========================================
+       DARK FOOTER (EXACT FIGMA SPEC)
+       ========================================== -->
+  <footer class="footer-dark">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div>
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon">P</div>
+            <span>PARK-O-BUDDY</span>
+          </a>
+          <p class="footer-brand-desc">
+            Connecting empty driveways, garages, and business spaces with drivers looking for affordable, convenient parking. Redefining city parking, one spot at a time.
+          </p>
+        </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container text-center">
-      <h3>PARK-O-<span class="buddy">BUDDY</span></h3>
-      <p>PLAN. PAY. PARK.</p>
-      <p class="text-muted" style="margin-top: 10px;">&copy; 2026 PARK-O-BUDDY Inc. All rights reserved.</p>
+        <!-- Platform Links -->
+        <div>
+          <div class="footer-col-title">Platform</div>
+          <ul class="footer-links-list">
+            <li><a href="search.html" class="footer-link">Find Parking</a></li>
+            <li><a href="host.html" class="footer-link">List Your Space</a></li>
+            <li><a href="index.html#how-it-works" class="footer-link">How It Works</a></li>
+            <li><a href="about.html" class="footer-link">Security & Trust</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Links -->
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press Kit</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Links -->
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Contact Support</a></li>
+            <li><a href="#" class="footer-link">Trust & Safety</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Legal / Copyright Bottom -->
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Cookie Settings</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Separate External JavaScript File -->
   <script src="script.js"></script>
 </body>
 </html>

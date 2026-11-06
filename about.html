@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — PARK-O-BUDDY</title>
+  <meta name="description" content="Parking should be simple. We connect drivers with empty parking spaces.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- ==========================================
+       DARK NAVBAR (EXACT FIGMA SPEC)
+       ========================================== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item active">About Us</a></li>
+        <li><a href="auth.html" class="nav-item">Sign Up</a></li>
+        <li><a href="search.html" class="nav-item">Find Parking</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       TOP DARK BANNER (EXACT FIGMA ABOUT HEADER)
+       ========================================== -->
+  <section class="about-hero-banner">
+    <div class="container">
+      <h1 class="about-hero-title">Parking should be simple.</h1>
+      <p class="about-hero-sub">
+        We are on a mission to connect empty spaces with drivers looking for affordable, convenient, and safe parking spots.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MAIN CONTENT (PROBLEM vs SOLUTION & FEATURES)
+       ========================================== -->
+  <main>
+    <div class="container" style="padding-top: 20px; padding-bottom: 60px;">
+      
+      <!-- Problem vs Solution Two-Column Grid -->
+      <div class="problem-solution-wrap">
+        <!-- The Problem -->
+        <div class="problem-box">
+          <div class="box-title-row">
+            <span style="color: #EF4444; font-size: 1.3rem;">🔺</span>
+            <span style="color: #111827;">The Problem</span>
+          </div>
+          <div class="bullet-list">
+            <div class="bullet-item">
+              <span class="bullet-icon">🚗</span>
+              <p>Hours spent circling blocks, increasing city carbon footprints and driver frustration.</p>
+            </div>
+            <div class="bullet-item">
+              <span class="bullet-icon">💸</span>
+              <p>Overpriced traditional garages charging exorbitant rates without security guarantees.</p>
+            </div>
+            <div class="bullet-item">
+              <span class="bullet-icon">📊</span>
+              <p>Complete lack of real-time parking space data causing traffic bottlenecks.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our Solution -->
+        <div class="solution-box">
+          <div class="box-title-row">
+            <span style="color: #10B981; font-size: 1.3rem;">✅</span>
+            <span style="color: #111827;">Our Solution</span>
+          </div>
+          <div class="bullet-list">
+            <div class="bullet-item">
+              <span class="bullet-icon">🟢</span>
+              <p>Instantly view and reserve verified empty spots hosted by home or business owners.</p>
+            </div>
+            <div class="bullet-item">
+              <span class="bullet-icon">⚡</span>
+              <p>Up to 50% cheaper rates than corporate commercial lots.</p>
+            </div>
+            <div class="bullet-item">
+              <span class="bullet-icon">📱</span>
+              <p>Hassle-free navigation, fast payments, and instant access via one unified app.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flow Diagram (Host Spaces <-> PARK-O-BUDDY Core <-> Drivers) -->
+      <div class="flow-diagram-container">
+        <!-- Node 1: Host Spaces -->
+        <div class="flow-node">
+          <div style="font-size: 1.5rem; margin-bottom: 4px;">🏠</div>
+          <strong style="color: #111827; display: block; font-size: 0.95rem;">Host Spaces</strong>
+          <span style="font-size: 0.78rem; color: #6B7280;">Unused driveways</span>
+        </div>
+
+        <div class="flow-dashed-line"></div>
+
+        <!-- Node 2: Core Platform -->
+        <div class="flow-node core-node">
+          <div class="core-badge-icon">P</div>
+          <strong style="display: block; font-size: 0.95rem;">PARK-O-BUDDY Core</strong>
+          <span style="font-size: 0.78rem; color: #9CA3AF;">Real-Time Routing & API</span>
+        </div>
+
+        <div class="flow-dashed-line"></div>
+
+        <!-- Node 3: Drivers -->
+        <div class="flow-node">
+          <div style="font-size: 1.5rem; margin-bottom: 4px;">🚗</div>
+          <strong style="color: #111827; display: block; font-size: 0.95rem;">Drivers</strong>
+          <span style="font-size: 0.78rem; color: #6B7280;">Secure, Instant booking</span>
+        </div>
+      </div>
+
+      <!-- Core Features Grid (Exact 6 cards) -->
+      <div class="section-header" style="text-align: left; margin-bottom: 24px;">
+        <h2 class="section-title" style="font-size: 1.8rem;">Core Features</h2>
+      </div>
+
+      <div class="core-features-grid">
+        <!-- Feature 1 -->
+        <div class="core-feature-card">
+          <div class="feature-circle-icon">🕒</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Real-time Availability</h4>
+          <p class="text-muted" style="font-size: 0.88rem; line-height: 1.6;">
+            Live slot mapping ensures you always view exactly what's vacant right now.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="core-feature-card">
+          <div class="feature-circle-icon">💳</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Secure Payments</h4>
+          <p class="text-muted" style="font-size: 0.88rem; line-height: 1.6;">
+            Integrated credit card, UPI, and netbanking processing with instant receipts.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="core-feature-card">
+          <div class="feature-circle-icon">🧭</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Smart Navigation</h4>
+          <p class="text-muted" style="font-size: 0.88rem; line-height: 1.6;">
+            Turn-by-turn routing guidelines lead you right to your booked parking coordinate.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="core-feature-card">
+          <div class="feature-circle-icon">🎛️</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Host Dashboard</h4>
+          <p class="text-muted" style="font-size: 0.88rem; line-height: 1.6;">
+            Earnings tracking, availability calendar control, and spot listing admin tools.
+          </p>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="core-feature-card">
+          <div class="feature-circle-icon">⚡</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 8px;">Instant Booking</h4>
+          <p class="text-muted" style="font-size: 0.88rem; line-height: 1.6;">
+            Select, pay, and reserve in under 30 seconds. No waiting lines or back and forth.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="core-feature-card">
+          <div class="feature-circle-icon">🎧</div>
+          <h4 style="font-size: 1.05rem; margin-bottom: 8px;">24/7 Support</h4>
+          <p class="text-muted" style="font-size: 0.88rem; line-height: 1.6;">
+            Our localized assistance helpdesk stands by around the clock to support you.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       DARK FOOTER (EXACT FIGMA SPEC)
+       ========================================== -->
+  <footer class="footer-dark">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div>
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon">P</div>
+            <span>PARK-O-BUDDY</span>
+          </a>
+          <p class="footer-brand-desc">
+            Connecting empty driveways, garages, and business spaces with drivers looking for affordable, convenient parking. Redefining city parking, one spot at a time.
+          </p>
+        </div>
+
+        <!-- Platform Links -->
+        <div>
+          <div class="footer-col-title">Platform</div>
+          <ul class="footer-links-list">
+            <li><a href="search.html" class="footer-link">Find Parking</a></li>
+            <li><a href="host.html" class="footer-link">List Your Space</a></li>
+            <li><a href="index.html#how-it-works" class="footer-link">How It Works</a></li>
+            <li><a href="about.html" class="footer-link">Security & Trust</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Links -->
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press Kit</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Links -->
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Contact Support</a></li>
+            <li><a href="#" class="footer-link">Trust & Safety</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Legal / Copyright Bottom -->
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
