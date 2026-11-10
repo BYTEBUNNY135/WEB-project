@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up / Login — PARK-O-BUDDY</title>
+  <meta name="description" content="Create your account on PARK-O-BUDDY.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Us</a></li>
+        <li><a href="auth.html" class="nav-item active">Sign Up</a></li>
+        <li><a href="search.html" class="nav-item">Find Parking</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- AUTH CARD CONTAINER -->
+  <main style="display: flex; align-items: center; justify-content: center; padding: 60px 20px;">
+    <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 40px; width: 100%; max-width: 480px; box-shadow: var(--shadow-md);">
+      
+      <div class="text-center" style="margin-bottom: 28px;">
+        <h2 style="font-size: 1.8rem; margin-bottom: 6px;">Welcome to PARK-O-BUDDY</h2>
+        <p class="text-muted" style="font-size: 0.95rem;">How would you like to use PARK-O-BUDDY?</p>
+      </div>
+
+      <!-- Role Selector (Parker vs Host) -->
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;">
+        <div id="roleParker" class="role-btn selected" onclick="setRole('parker')" style="border: 2px solid var(--brand-green); background: var(--brand-green-light); border-radius: var(--radius-md); padding: 16px; text-align: center; cursor: pointer; position: relative;">
+          <div style="font-size: 1.8rem; margin-bottom: 4px;">🚗</div>
+          <strong style="display: block; font-size: 0.95rem; color: #111827;">PARKER</strong>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">“I need a spot”</span>
+        </div>
+
+        <div id="roleHost" class="role-btn" role="button" tabindex="0" onclick="setRole('host')" style="border: 2px solid var(--border-color); background: #FFFFFF; border-radius: var(--radius-md); padding: 16px 10px; text-align: center; cursor: pointer; position: relative;">
+          <div style="font-size: 1.8rem; margin-bottom: 4px;">🏠</div>
+          <strong style="display: block; font-size: 0.95rem; color: #111827;">HOST</strong>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">“I want to rent”</span>
+        </div>
+        <div id="roleBoth" class="role-btn" role="button" tabindex="0" onclick="setRole('both')" style="border: 2px solid var(--border-color); background: #FFFFFF; border-radius: var(--radius-md); padding: 16px 10px; text-align: center; cursor: pointer; position: relative;">
+          <div style="font-size: 1.8rem; margin-bottom: 4px;">🔄</div>
+          <strong style="display: block; font-size: 0.95rem; color: #111827;">BOTH</strong>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">“I do both”</span>
+        </div>
+      </div>
+
+      <!-- Signup Form -->
+      <form id="signupForm" novalidate>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">Full Name</label>
+          <input type="text" id="signupName" name="name" placeholder="Alex Morgan" minlength="2" required style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">Email Address</label>
+          <input type="email" id="signupEmail" name="email" placeholder="alex@example.com" required style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">Phone Number</label>
+          <input type="tel" id="signupPhone" name="phone" placeholder="+91 98765 43210" pattern="[0-9+() -]{10,16}" required style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+        </div>
+
+        <div style="margin-bottom: 24px;">
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 6px;">Password</label>
+          <input type="password" id="signupPassword" name="password" placeholder="At least 8 characters" minlength="8" required style="width: 100%; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg">
+          Create Account &rarr;
+        </button>
+        <p id="authMessage" role="status" aria-live="polite" style="margin-top:12px;font-size:.88rem;"></p>
+      </form>
+
+      <div class="text-center" style="margin-top: 20px; font-size: 0.9rem;">
+        <span class="text-muted">Already have an account?</span>
+        <a href="dashboard.html" class="text-green font-bold" style="margin-left: 4px;">Log in</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-dark">
+    <div class="container text-center">
+      <div style="font-size: 0.85rem; color: #9CA3AF;">&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
