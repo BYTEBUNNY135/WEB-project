@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parking Results — PARK-O-BUDDY</title>
+  <meta name="description" content="Showing available parking spaces near Downtown Hub with real-time rates.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- ==========================================
+       DARK NAVBAR (EXACT FIGMA SPEC)
+       ========================================== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Us</a></li>
+        <li><a href="auth.html" class="nav-item">Sign Up</a></li>
+        <li><a href="search.html" class="nav-item active">Find Parking</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       RESULTS SUB-HEADER BAR
+       ========================================== -->
+  <main>
+    <div class="container">
+      <div class="results-subbar">
+        <div style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 0.95rem;">
+          <span style="display: inline-block; width: 10px; height: 10px; background: var(--brand-green); border-radius: 50%;"></span>
+          <span>Showing 5 spots near <strong>Downtown Hub</strong></span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="font-size: 0.88rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px;">
+            <span>Sort by:</span>
+            <select id="sortResults" aria-label="Sort parking results" style="border: 1px solid var(--border-color); border-radius: 6px; padding: 4px 8px; background: #FFFFFF; font-size: 0.85rem; font-weight: 600;">
+              <option>Price (Low to High)</option>
+              <option>Distance</option>
+              <option>Rating</option>
+            </select>
+          </div>
+          <a href="search.html" class="btn btn-secondary btn-sm" style="border-radius: 6px;">All Filters</a>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           TWO-COLUMN RESULTS LAYOUT (CARDS & MAP)
+           ========================================== -->
+      <div class="results-layout-grid">
+        
+        <!-- Left Column: Parking Spot Cards -->
+        <div class="listings-scroll-container">
+          
+          <!-- Listing 1: Copley Square Plaza -->
+          <div class="listing-card-horizontal" id="listing-1">
+            <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=400&q=80" alt="Copley Square Plaza" class="listing-thumb">
+            <div class="listing-info">
+              <div>
+                <div class="listing-title-row">
+                  <h3 style="font-size: 1.15rem; font-weight: 700;">Copley Square Plaza</h3>
+                  <span style="font-size: 0.9rem; font-weight: 700;">⭐ 4.9</span>
+                </div>
+                <div class="listing-meta">
+                  100 Boylston St, Back Bay • <span class="text-green font-bold">0.2 miles away</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                  🕒 06:00 AM - 11:00 PM
+                </div>
+                <div class="listing-tags">
+                  <span class="badge badge-grey">COVERED</span>
+                  <span class="badge badge-grey">SECURITY</span>
+                  <span class="badge badge-grey">24/7</span>
+                </div>
+              </div>
+              <div class="listing-bottom-row">
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">
+                  ₹30<span style="font-size: 0.8rem; font-weight: 400; color: var(--text-muted);">/hr</span>
+                </div>
+                <a href="slot.html?space=Copley+Square+Plaza&rate=30" class="btn btn-primary btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 2: Downtown Hub Garage -->
+          <div class="listing-card-horizontal" id="listing-2">
+            <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=400&q=80" alt="Downtown Hub Garage" class="listing-thumb">
+            <div class="listing-info">
+              <div>
+                <div class="listing-title-row">
+                  <h3 style="font-size: 1.15rem; font-weight: 700;">Downtown Hub Garage</h3>
+                  <span style="font-size: 0.9rem; font-weight: 700;">⭐ 4.8</span>
+                </div>
+                <div class="listing-meta">
+                  45 Franklin St, Downtown Crossing • <span class="text-green font-bold">0.5 miles away</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                  🕒 24/7 Available
+                </div>
+                <div class="listing-tags">
+                  <span class="badge badge-coral">⚡ EV CHARGING</span>
+                  <span class="badge badge-grey">SECURITY</span>
+                  <span class="badge badge-grey">COVERED</span>
+                </div>
+              </div>
+              <div class="listing-bottom-row">
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">
+                  ₹40<span style="font-size: 0.8rem; font-weight: 400; color: var(--text-muted);">/hr</span>
+                </div>
+                <a href="slot.html?space=Downtown+Hub+Garage&rate=40" class="btn btn-primary btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 3: Kenmore Secure Space -->
+          <div class="listing-card-horizontal" id="listing-3">
+            <img src="https://images.unsplash.com/photo-1573348722427-f1d6819fdf98?auto=format&fit=crop&w=400&q=80" alt="Kenmore Secure Space" class="listing-thumb">
+            <div class="listing-info">
+              <div>
+                <div class="listing-title-row">
+                  <h3 style="font-size: 1.15rem; font-weight: 700;">Kenmore Secure Space</h3>
+                  <span style="font-size: 0.9rem; font-weight: 700;">⭐ 4.7</span>
+                </div>
+                <div class="listing-meta">
+                  640 Beacon St, Kenmore Square • <span class="text-green font-bold">1.1 miles away</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                  🕒 06:00 AM - 10:00 PM
+                </div>
+                <div class="listing-tags">
+                  <span class="badge badge-grey">SECURITY</span>
+                  <span class="badge badge-grey">24/7</span>
+                </div>
+              </div>
+              <div class="listing-bottom-row">
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">
+                  ₹50<span style="font-size: 0.8rem; font-weight: 400; color: var(--text-muted);">/hr</span>
+                </div>
+                <a href="slot.html?space=Kenmore+Secure+Space&rate=50" class="btn btn-primary btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 4: Back Bay Courtyard Lot -->
+          <div class="listing-card-horizontal" id="listing-4">
+            <img src="https://images.unsplash.com/photo-1543465077-db45d34b88a5?auto=format&fit=crop&w=400&q=80" alt="Back Bay Courtyard Lot" class="listing-thumb">
+            <div class="listing-info">
+              <div>
+                <div class="listing-title-row">
+                  <h3 style="font-size: 1.15rem; font-weight: 700;">Back Bay Courtyard Lot</h3>
+                  <span style="font-size: 0.9rem; font-weight: 700;">⭐ 4.6</span>
+                </div>
+                <div class="listing-meta">
+                  220 Newbury St, Back Bay • <span class="text-green font-bold">0.4 miles away</span>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+                  🕒 07:00 AM - 09:00 PM
+                </div>
+                <div class="listing-tags">
+                  <span class="badge badge-grey">VAL-DELIVERY ACCESS</span>
+                  <span class="badge badge-grey">LIGHTING</span>
+                </div>
+              </div>
+              <div class="listing-bottom-row">
+                <div style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">
+                  ₹30<span style="font-size: 0.8rem; font-weight: 400; color: var(--text-muted);">/hr</span>
+                </div>
+                <a href="slot.html?space=Back+Bay+Courtyard+Lot&rate=30" class="btn btn-primary btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Styled Map Panel (Exact Figma Design) -->
+        <div class="interactive-map-panel">
+          <!-- Zoom Controls -->
+          <div class="map-zoom-controls">
+            <button class="map-zoom-btn" title="Zoom In">+</button>
+            <button class="map-zoom-btn" title="Zoom Out">−</button>
+          </div>
+
+          <!-- Vector Road Network -->
+          <svg class="map-svg-roads" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Water Body -->
+            <path d="M0 0 L 120 0 L 140 180 L 120 380 L 100 580 L 0 580 Z" fill="#B9D5EC"/>
+            
+            <!-- Roads & Bridges -->
+            <g stroke="#FFFFFF" stroke-width="8" stroke-linecap="round">
+              <line x1="120" y1="120" x2="480" y2="210"/>
+              <line x1="80" y1="360" x2="460" y2="200"/>
+              <line x1="280" y1="30" x2="280" y2="550" stroke-width="6"/>
+              <line x1="160" y1="260" x2="450" y2="480" stroke-width="6"/>
+              <line x1="380" y1="80" x2="380" y2="400" stroke-width="4"/>
+            </g>
+          </svg>
+
+          <!-- Interactive Price Pins -->
+          <div class="map-pin-badge" style="top: 28%; left: 52%;" onclick="highlightListing(1)">₹30</div>
+          <div class="map-pin-badge active" style="top: 42%; left: 74%;" onclick="highlightListing(2)">₹40</div>
+          <div class="map-pin-badge" style="top: 68%; left: 42%;" onclick="highlightListing(3)">₹50</div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       DARK FOOTER (EXACT FIGMA SPEC)
+       ========================================== -->
+  <footer class="footer-dark">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div>
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon">P</div>
+            <span>PARK-O-BUDDY</span>
+          </a>
+          <p class="footer-brand-desc">
+            Connecting empty driveways, garages, and business spaces with drivers looking for affordable, convenient parking. Redefining city parking, one spot at a time.
+          </p>
+        </div>
+
+        <!-- Platform Links -->
+        <div>
+          <div class="footer-col-title">Platform</div>
+          <ul class="footer-links-list">
+            <li><a href="search.html" class="footer-link">Find Parking</a></li>
+            <li><a href="host.html" class="footer-link">List Your Space</a></li>
+            <li><a href="index.html#how-it-works" class="footer-link">How It Works</a></li>
+            <li><a href="about.html" class="footer-link">Security & Trust</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Links -->
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press Kit</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Links -->
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Contact Support</a></li>
+            <li><a href="#" class="footer-link">Trust & Safety</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Legal / Copyright Bottom -->
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
