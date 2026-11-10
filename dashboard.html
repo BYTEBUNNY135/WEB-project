@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — PARK-O-BUDDY</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Us</a></li>
+        <li><a href="dashboard.html" class="nav-item active">Dashboard</a></li>
+        <li><a href="search.html" class="nav-item">Find Parking</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD LAYOUT -->
+  <main id="dashboardMain">
+    <div class="container" style="padding: 40px 24px;">
+      
+      <div style="display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: start;">
+        
+        <!-- Sidebar Navigation -->
+        <aside style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-sm);">
+          <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 16px; color: var(--text-main);">MENU</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <a href="dashboard.html" style="background: var(--brand-green-light); color: var(--brand-green); font-weight: 700; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+              📊 Overview
+            </a>
+            <a href="#bookings" style="color: var(--text-muted); font-weight: 600; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+              🚗 My Bookings
+            </a>
+            <a href="search.html" style="color: var(--text-muted); font-weight: 600; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+              🔍 Find Parking
+            </a>
+            <a href="host.html" style="color: var(--text-muted); font-weight: 600; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+              🏠 My Spaces
+            </a>
+            <a href="#earnings" style="color: var(--text-muted); font-weight: 600; padding: 10px 14px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+              💰 Earnings
+            </a>
+          </div>
+        </aside>
+
+        <!-- Main Dashboard View -->
+        <div>
+          <div style="margin-bottom: 24px;">
+            <h1 style="font-size: 2.2rem; margin-bottom: 4px;">Good morning! 👋</h1>
+            <p class="text-muted">Here is your parking activity and host summary.</p>
+          </div>
+
+          <!-- Summary Metric Cards -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; margin-bottom: 32px;">
+            <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-sm);">
+              <span class="text-muted" style="font-size: 0.82rem; font-weight: 600; text-transform: uppercase;">Upcoming Bookings</span>
+              <div style="font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; margin-top: 4px;">2</div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-sm);">
+              <span class="text-muted" style="font-size: 0.82rem; font-weight: 600; text-transform: uppercase;">Completed Bookings</span>
+              <div style="font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; margin-top: 4px;">8</div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-sm);">
+              <span class="text-muted" style="font-size: 0.82rem; font-weight: 600; text-transform: uppercase;">Total Spent</span>
+              <div class="text-green" style="font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; margin-top: 4px;">₹1,420</div>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-sm);">
+              <span class="text-muted" style="font-size: 0.82rem; font-weight: 600; text-transform: uppercase;">Host Earnings</span>
+              <div style="color: var(--accent-coral); font-size: 2rem; font-weight: 800; font-family: 'Poppins', sans-serif; margin-top: 4px;">₹8,600</div>
+            </div>
+          </div>
+
+          <!-- Upcoming Bookings Table -->
+          <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h3 style="font-size: 1.25rem;">Upcoming Reservations</h3>
+              <a href="search.html" class="btn btn-primary btn-sm">+ Book New Spot</a>
+            </div>
+
+            <div style="overflow-x: auto;">
+              <table style="width: 100%; border-collapse: collapse; font-size: 0.92rem;">
+                <thead>
+                  <tr style="background: #F8FAFC; border-bottom: 1px solid var(--border-color); text-align: left; color: var(--text-muted); font-size: 0.78rem; text-transform: uppercase;">
+                    <th style="padding: 12px 14px;">Facility</th>
+                    <th style="padding: 12px 14px;">Date</th>
+                    <th style="padding: 12px 14px;">Time</th>
+                    <th style="padding: 12px 14px;">Slot</th>
+                    <th style="padding: 12px 14px;">Status</th>
+                    <th style="padding: 12px 14px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 14px; font-weight: 700;">Downtown Hub Garage</td>
+                    <td style="padding: 14px;">10 Nov 2026</td>
+                    <td style="padding: 14px;">09:00 AM – 01:00 PM</td>
+                    <td style="padding: 14px;"><span class="badge badge-coral">B2</span></td>
+                    <td style="padding: 14px;"><span class="badge badge-green">Confirmed</span></td>
+                    <td style="padding: 14px;"><a href="confirmation.html" class="btn btn-secondary btn-sm">View Pass</a></td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid var(--border-color);">
+                    <td style="padding: 14px; font-weight: 700;">Copley Square Plaza</td>
+                    <td style="padding: 14px;">14 Nov 2026</td>
+                    <td style="padding: 14px;">02:00 PM – 06:00 PM</td>
+                    <td style="padding: 14px;"><span class="badge badge-coral">A4</span></td>
+                    <td style="padding: 14px;"><span class="badge badge-green">Confirmed</span></td>
+                    <td style="padding: 14px;"><a href="confirmation.html" class="btn btn-secondary btn-sm">View Pass</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <section class="container" style="padding:0 24px 48px;">
+    <div id="dashboardData" aria-live="polite"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-dark">
+    <div class="container text-center">
+      <div style="font-size: 0.85rem; color: #9CA3AF;">&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

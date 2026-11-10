@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parker Search — PARK-O-BUDDY</title>
+  <meta name="description" content="Discover safe, verified parking spaces available for reservation in real-time.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- ==========================================
+       DARK NAVBAR (EXACT FIGMA SPEC)
+       ========================================== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Us</a></li>
+        <li><a href="auth.html" class="nav-item">Sign Up</a></li>
+        <li><a href="search.html" class="nav-item active">Find Parking</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       TOP EXTENDED SEARCH BAR (FIGMA SPEC)
+       ========================================== -->
+  <section class="search-header-panel">
+    <div class="container">
+      <form id="parkingSearchForm" action="results.html" method="GET">
+        <div class="search-fields-bar">
+          <!-- Location -->
+          <div class="search-input-box">
+            <label>📍 Location</label>
+            <input type="text" name="location" id="searchLocation" required placeholder="Enter city, venue, or addr..." value="Downtown Hub">
+          </div>
+
+          <!-- Date Range -->
+          <div class="search-input-box">
+            <label>📅 Date Range</label>
+            <input type="date" name="date" id="searchDate" required value="2026-11-10">
+          </div>
+
+          <!-- Check-in Time -->
+          <div class="search-input-box">
+            <label>🕒 Check-in Time</label>
+            <input type="time" name="checkin" id="checkin" type="time" value="09:00" required>
+          </div>
+
+          <!-- Check-out Time -->
+          <div class="search-input-box">
+            <label>🕒 Check-out Time</label>
+            <input type="time" name="checkout" id="checkout" type="time" value="17:00" required>
+          </div>
+
+          <!-- Vehicle Type -->
+          <div class="search-input-box">
+            <label>🚗 Vehicle Type</label>
+            <select name="vehicle">
+              <option value="sedan" selected>Sedan, SUV, Bike, etc.</option>
+              <option value="hatchback">Hatchback</option>
+              <option value="suv">Full-size SUV</option>
+              <option value="ev">Electric Vehicle (EV)</option>
+            </select>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary" style="height: 48px; border-radius: var(--radius-sm);">
+            Search Now
+          </button>
+        </div>
+
+        <!-- Popular Locations Row -->
+        <div class="popular-chips-row">
+          <span class="popular-label">Popular:</span>
+          <a href="results.html?location=Copley+Square" class="popular-chip">Copley Square</a>
+          <a href="results.html?location=Downtown+Hub" class="popular-chip">Downtown Hub</a>
+          <a href="results.html?location=Airport+Zone" class="popular-chip">Airport Zone</a>
+          <a href="results.html?location=Mall+Central" class="popular-chip">Mall Central</a>
+          <a href="results.html?location=Sector+62" class="popular-chip">Sector 62</a>
+          <a href="results.html?location=Park+Street" class="popular-chip">Park Street</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MAIN SEARCH BODY (FILTERS + EMPTY CANVAS)
+       ========================================== -->
+  <main>
+    <div class="container">
+      <div class="search-body-grid">
+        
+        <!-- Left Column: Filters Sidebar -->
+        <aside class="filter-sidebar-card">
+          <h3 style="font-size: 1.15rem; margin-bottom: 20px;">Filters</h3>
+
+          <!-- Price Range Filter -->
+          <div class="filter-group">
+            <div class="filter-group-title">Price Range (per hour)</div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">
+              <span>₹10</span>
+              <span id="priceDisplay">₹150</span>
+            </div>
+            <input type="range" min="10" max="150" value="150" style="width: 100%; accent-color: var(--brand-green);" oninput="document.getElementById('priceDisplay').innerText = '₹' + this.value">
+          </div>
+
+          <!-- Max Distance Filter -->
+          <div class="filter-group">
+            <div class="filter-group-title">Max Distance</div>
+            <div class="chip-options-row">
+              <button type="button" class="chip-btn" onclick="toggleFilter(this)">&lt; 500m</button>
+              <button type="button" class="chip-btn active" onclick="toggleFilter(this)">&lt; 1km</button>
+              <button type="button" class="chip-btn" onclick="toggleFilter(this)">&lt; 2km</button>
+            </div>
+          </div>
+
+          <!-- Amenities Filter -->
+          <div class="filter-group">
+            <div class="filter-group-title">Amenities</div>
+            <label class="checkbox-label">
+              <input type="checkbox" checked>
+              <span>Covered Parking</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" checked>
+              <span>EV Charging Station</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox">
+              <span>CCTV Security Monitoring</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox">
+              <span>Handicap Access</span>
+            </label>
+          </div>
+        </aside>
+
+        <!-- Right Column: Initial Search Empty State -->
+        <section class="empty-state-canvas">
+          <div class="empty-state-icon-circle">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          
+          <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Enter a location to find spots</h2>
+          <p class="text-muted" style="max-width: 480px; font-size: 0.95rem; margin-bottom: 28px; line-height: 1.6;">
+            Discover safe, fully verified driveways, residential spaces, and smart garages available for reservation in real-time.
+          </p>
+
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+            <a href="results.html?location=Downtown+Hub" class="btn btn-secondary">
+              Try 'Downtown Hub'
+            </a>
+            <a href="results.html" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+              Browse Near Me
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       DARK FOOTER (EXACT FIGMA SPEC)
+       ========================================== -->
+  <footer class="footer-dark">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Brand Summary -->
+        <div>
+          <a href="index.html" class="brand-logo">
+            <div class="brand-icon">P</div>
+            <span>PARK-O-BUDDY</span>
+          </a>
+          <p class="footer-brand-desc">
+            Connecting empty driveways, garages, and business spaces with drivers looking for affordable, convenient parking. Redefining city parking, one spot at a time.
+          </p>
+        </div>
+
+        <!-- Platform Links -->
+        <div>
+          <div class="footer-col-title">Platform</div>
+          <ul class="footer-links-list">
+            <li><a href="search.html" class="footer-link">Find Parking</a></li>
+            <li><a href="host.html" class="footer-link">List Your Space</a></li>
+            <li><a href="index.html#how-it-works" class="footer-link">How It Works</a></li>
+            <li><a href="about.html" class="footer-link">Security & Trust</a></li>
+          </ul>
+        </div>
+
+        <!-- Company Links -->
+        <div>
+          <div class="footer-col-title">Company</div>
+          <ul class="footer-links-list">
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link">Press Kit</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Support Links -->
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links-list">
+            <li><a href="#" class="footer-link">Help Center</a></li>
+            <li><a href="#" class="footer-link">Contact Support</a></li>
+            <li><a href="#" class="footer-link">Trust & Safety</a></li>
+            <li><a href="#" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Legal / Copyright Bottom -->
+      <div class="footer-bottom-bar">
+        <div>&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Cookie Settings</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

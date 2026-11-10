@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Host Your Space — PARK-O-BUDDY</title>
+  <meta name="description" content="List your space and start earning when you're not using it.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Us</a></li>
+        <li><a href="auth.html" class="nav-item">Sign Up</a></li>
+        <li><a href="search.html" class="nav-item">Find Parking</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN HOST SECTION -->
+  <main>
+    <div class="container" style="padding: 50px 24px;">
+      <div class="text-center" style="max-width: 650px; margin: 0 auto 40px;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 12px;">Turn your empty space into income.</h1>
+        <p class="text-muted" style="font-size: 1.05rem; line-height: 1.6;">
+          List your driveway, garage, or vacant parking lot and start earning money automatically whenever it's unoccupied.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 36px; align-items: start;">
+        
+        <!-- Host Listing Form -->
+        <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-sm);">
+          <h3 style="font-size: 1.3rem; margin-bottom: 24px;">List Your Parking Space</h3>
+          
+          <form id="hostForm" novalidate>
+            <div style="margin-bottom: 18px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Parking Space Name</label>
+              <input type="text" id="hostTitleInput" name="title" required style="width: 100%; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;" value="Sunny Private Driveway" oninput="updateLivePreview()">
+            </div>
+
+            <div style="margin-bottom: 18px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Address & Landmark</label>
+              <input type="text" id="hostAddressInput" name="address" required style="width: 100%; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;" value="Plot 42, Sector 15, Near Metro" oninput="updateLivePreview()">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px;">
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Parking Type</label>
+                <select id="hostTypeInput" name="type" required style="width: 100%; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem; background: #FFFFFF;" onchange="updateLivePreview()">
+                  <option value="Covered Driveway">Covered Driveway</option>
+                  <option value="Underground Garage">Underground Garage</option>
+                  <option value="Open Paved Lot">Open Paved Lot</option>
+                </select>
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; margin-bottom: 6px;">Price / Hour (₹)</label>
+                <input type="number" id="hostPriceInput" name="price" min="1" max="10000" required style="width: 100%; padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 0.95rem;" value="45" oninput="updateLivePreview()">
+              </div>
+            </div>
+
+            <!-- Amenities -->
+            <div style="margin-bottom: 20px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;">Amenities Available</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <label class="checkbox-label"><input type="checkbox" name="amenities" value="Covered Parking" checked> <span>Covered Parking</span></label>
+                <label class="checkbox-label"><input type="checkbox" name="amenities" value="CCTV Security" checked> <span>CCTV Security</span></label>
+                <label class="checkbox-label"><input type="checkbox" name="amenities" value="EV Charging"> <span>EV Charging</span></label>
+                <label class="checkbox-label"><input type="checkbox" name="amenities" value="24/7 Access" checked> <span>24/7 Access</span></label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full btn-lg" style="margin-top: 10px;">
+              Publish Parking Space &rarr;
+            </button>
+            <p id="hostMessage" role="status" aria-live="polite" style="margin-top:12px;font-size:.88rem;"></p>
+          </form>
+        </div>
+
+        <!-- Live Listing Preview -->
+        <div>
+          <div style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em; margin-bottom: 12px;">
+            Live Listing Preview
+          </div>
+
+          <div style="background: #FFFFFF; border: 2px solid var(--brand-green); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-md);">
+            <div style="height: 180px; background: #E5E7EB; position: relative;">
+              <img src="https://images.unsplash.com/photo-1543465077-db45d34b88a5?auto=format&fit=crop&w=600&q=80" alt="Space Preview" style="width: 100%; height: 100%; object-fit: cover;">
+              <span class="badge badge-green" style="position: absolute; top: 12px; left: 12px;">NEW LISTING</span>
+            </div>
+            <div style="padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <h4 id="previewTitle" style="font-size: 1.2rem;">Sunny Private Driveway</h4>
+                <span style="font-size: 0.88rem; font-weight: 700;">⭐ 5.0 (New)</span>
+              </div>
+              <p id="previewAddress" class="text-muted" style="font-size: 0.88rem; margin-bottom: 14px;">
+                📍 Plot 42, Sector 15, Near Metro
+              </p>
+              <div style="display: flex; gap: 6px; margin-bottom: 20px;">
+                <span class="badge badge-grey" id="previewType">COVERED DRIVEWAY</span>
+                <span class="badge badge-grey">CCTV</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                <div style="font-size: 1.35rem; font-weight: 800; color: var(--brand-green);">
+                  <span id="previewPrice">₹45</span><span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">/hr</span>
+                </div>
+                <span class="btn btn-secondary btn-sm" style="pointer-events: none;">Instant Book</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-dark">
+    <div class="container">
+      <div class="footer-bottom-bar" style="border-top: none; padding-top: 0;">
+        <div>&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
