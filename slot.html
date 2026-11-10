@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Your Parking Slot — PARK-O-BUDDY</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">P</div>
+        <span>PARK-O-BUDDY</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="about.html" class="nav-item">About Us</a></li>
+        <li><a href="auth.html" class="nav-item">Sign Up</a></li>
+        <li><a href="search.html" class="nav-item active">Find Parking</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="host.html" class="btn btn-primary btn-sm">Host Space</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="container" style="padding-top: 30px;">
+      <a href="results.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px; font-weight: 600;">
+        &larr; Back to Results
+      </a>
+
+      <h1 style="font-size: 2.2rem; margin-bottom: 6px;">Choose your parking slot</h1>
+      <p class="text-muted" style="margin-bottom: 24px;">Select your preferred designated bay from the interactive facility grid.</p>
+
+      <!-- Facility Details Banner -->
+      <div style="background: #FFFFFF; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
+        <div>
+          <h3 id="facilityNameDisplay" style="font-size: 1.25rem;">Downtown Hub Garage</h3>
+          <p class="text-muted" style="font-size: 0.88rem; margin-top: 2px;">
+            ⭐ 4.8 · Covered · CCTV Surveillance · 0.5 miles from destination
+          </p>
+        </div>
+        <div style="font-size: 1.35rem; font-weight: 800; color: var(--brand-green);">
+          ₹40<span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">/hour</span>
+        </div>
+      </div>
+
+      <!-- Slot Layout (Grid & Sidebar) -->
+      <div class="slot-view-layout">
+        
+        <!-- Slot Matrix Box -->
+        <div class="slot-grid-card">
+          <h3 style="font-size: 1.2rem; text-align: center; margin-bottom: 8px;">Select Parking Spot</h3>
+          
+          <div class="slot-legend-row">
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="color: var(--brand-green);">🟢</span> Available</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="color: #94A3B8;">⚪</span> Occupied</span>
+            <span style="display: flex; align-items: center; gap: 6px;"><span style="color: var(--accent-coral);">🟠</span> Selected</span>
+          </div>
+
+          <div class="parking-matrix">
+            <!-- Row A -->
+            <div class="matrix-row">
+              <button class="slot-box-btn" onclick="selectSlot('A1')">A1</button>
+              <button class="slot-box-btn" disabled>A2</button>
+              <button class="slot-box-btn" onclick="selectSlot('A3')">A3</button>
+              <button class="slot-box-btn" onclick="selectSlot('A4')">A4</button>
+              <button class="slot-box-btn" disabled>A5</button>
+            </div>
+
+            <!-- Row B -->
+            <div class="matrix-row">
+              <button class="slot-box-btn" onclick="selectSlot('B1')">B1</button>
+              <button class="slot-box-btn selected" id="slot-B2" onclick="selectSlot('B2')">B2</button>
+              <button class="slot-box-btn" onclick="selectSlot('B3')">B3</button>
+              <button class="slot-box-btn" disabled>B4</button>
+              <button class="slot-box-btn" onclick="selectSlot('B5')">B5</button>
+            </div>
+
+            <!-- Row C -->
+            <div class="matrix-row">
+              <button class="slot-box-btn" onclick="selectSlot('C1')">C1</button>
+              <button class="slot-box-btn" onclick="selectSlot('C2')">C2</button>
+              <button class="slot-box-btn" disabled>C3</button>
+              <button class="slot-box-btn" onclick="selectSlot('C4')">C4</button>
+              <button class="slot-box-btn" onclick="selectSlot('C5')">C5</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Summary Sidebar -->
+        <aside class="booking-summary-sidebar">
+          <h3 style="font-size: 1.25rem; margin-bottom: 20px;">Booking Summary</h3>
+
+          <div class="summary-detail-row">
+            <span class="text-muted">Facility:</span>
+            <strong id="summaryFacility">Downtown Hub Garage</strong>
+          </div>
+          <div class="summary-detail-row">
+            <span class="text-muted">Selected Slot:</span>
+            <strong id="summarySlot" style="color: var(--accent-coral); font-size: 1.1rem;">B2</strong>
+          </div>
+          <div class="summary-detail-row">
+            <span class="text-muted">Date:</span>
+            <strong>10 November 2026</strong>
+          </div>
+          <div class="summary-detail-row">
+            <span class="text-muted">Time:</span>
+            <strong>09:00 AM – 01:00 PM</strong>
+          </div>
+          <div class="summary-detail-row">
+            <span class="text-muted">Duration:</span>
+            <strong>4 hours</strong>
+          </div>
+
+          <div class="summary-total-row">
+            <span>Total:</span>
+            <span class="text-green" id="summaryTotal">₹160</span>
+          </div>
+
+          <button type="button" id="confirmBookingBtn" class="btn btn-primary btn-full btn-lg" style="margin-top: 24px;" onclick="submitBooking()">
+            Confirm Booking &rarr;
+          </button>
+          <p id="bookingMessage" role="status" aria-live="polite" style="margin-top:10px;font-size:.85rem;"></p>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-dark">
+    <div class="container">
+      <div class="footer-bottom-bar" style="border-top: none; padding-top: 0;">
+        <div>&copy; 2026 PARK-O-BUDDY. PLAN. PAY. PARK. ALL RIGHTS RESERVED.</div>
+        <div class="footer-legal-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
