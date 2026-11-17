@@ -1,3 +1,4 @@
+
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
@@ -46,7 +47,7 @@ router.post("/register", async (req, res) => {
       role: role === "host" ? "host" : "parker"
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       success: true,
       message: "Account created successfully!",
       user: {
@@ -61,7 +62,7 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     console.error("Registration error:", error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Registration failed."
     });
@@ -103,7 +104,7 @@ router.post("/login", async (req, res) => {
       });
     }
 
-    res.json({
+    return res.status(200).json({
       success: true,
       message: "Welcome back!",
       user: {
@@ -118,7 +119,7 @@ router.post("/login", async (req, res) => {
   } catch (error) {
     console.error("Login error:", error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       message: "Login failed."
     });
