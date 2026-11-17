@@ -1,37 +1,49 @@
 
 const express = require("express");
 const router = express.Router();
+const Booking = require("../models/Booking");
 
-const Booking = require("./Booking");
-
-// CREATE: Add a booking
+// CREATE: Save booking in MongoDB
 router.post("/", async (req, res) => {
     try {
-        const { name, vehicleNumber, slot, date } = req.body;
+        const { name, email, slot, date, space, total } = req.body;
 
-        if (!name || !vehicleNumber || !slot || !date) {
+        if (!name || !email || !slot || !date || !space || total === undefined) {
             return res.status(400).json({
                 success: false,
-                message: "All booking fields are required"
+                error: "All booking fields are required"
             });
         }
 
         const booking = await Booking.create({
             name,
-            vehicleNumber,
+            email,
             slot,
-            date
+            date,
+            space,
+            total
         });
 
         res.status(201).json({
             success: true,
-            message: "Booking created successfully",
-            booking
+            message: "Booking saved successfully",
+            booking: {
+                id: booking._id,
+                name: booking.name,
+                email: booking.email,
+                slot: booking.slot,
+                date: booking.date,
+                space: booking.space,
+                total: booking.total,
+                checkin: "09:00",
+                checkout: "13:00"
+            }
         });
+
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: error.message
+            error: error.message
         });
     }
 });
@@ -48,7 +60,7 @@ router.get("/", async (req, res) => {
     } catch (error) {
         res.status(500).json({
             success: false,
-            message: error.message
+            error: error.message
         });
     }
 });
@@ -65,19 +77,15 @@ router.put("/:id", async (req, res) => {
         if (!booking) {
             return res.status(404).json({
                 success: false,
-                message: "Booking not found"
+                error: "Booking not found"
             });
         }
 
-        res.json({
-            success: true,
-            message: "Booking updated successfully",
-            booking
-        });
+        res.json({ success: true, booking });
     } catch (error) {
         res.status(400).json({
             success: false,
-            message: error.message
+            error: error.message
         });
     }
 });
@@ -85,14 +93,12 @@ router.put("/:id", async (req, res) => {
 // DELETE: Delete a booking
 router.delete("/:id", async (req, res) => {
     try {
-        const booking = await Booking.findByIdAndDelete(
-            req.params.id
-        );
+        const booking = await Booking.findByIdAndDelete(req.params.id);
 
         if (!booking) {
             return res.status(404).json({
                 success: false,
-                message: "Booking not found"
+                error: "Booking not found"
             });
         }
 
@@ -103,9 +109,10 @@ router.delete("/:id", async (req, res) => {
     } catch (error) {
         res.status(400).json({
             success: false,
-            message: error.message
+            error: error.message
         });
     }
 });
 
 module.exports = router;
+
