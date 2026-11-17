@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
@@ -5,7 +6,7 @@ const bookingSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    vehicleNumber: {
+    email: {
         type: String,
         required: true
     },
@@ -15,6 +16,14 @@ const bookingSchema = new mongoose.Schema({
     },
     date: {
         type: String,
+        required: true
+    },
+    space: {
+        type: String,
+        required: true
+    },
+    total: {
+        type: Number,
         required: true
     }
 });
