@@ -10,10 +10,10 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const bookingRoutes = require("./routes/bookingRoutes");
+const bookingRoutes = require("./bookingRoutes");
 app.use("/api/bookings", bookingRoutes);
 
-const mongoBookingRoutes = require("./routes/mongoBookingRoutes");
+const mongoBookingRoutes = require("./mongoBookingRoutes");
 app.use("/api/mongo-bookings", mongoBookingRoutes);
 
 
